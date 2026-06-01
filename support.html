@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardHawk Support</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --accent: #e63946;
+      --accent-soft: #fdecef;
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #15171c;
+      --muted: #5f6673;
+      --border: #dde2ea;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #00d9ff;
+        --accent-soft: #082f38;
+        --bg: #0d1117;
+        --card: #161b22;
+        --text: #f2f5f9;
+        --muted: #a8b0bd;
+        --border: #303846;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+
+    header,
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .links {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 20px;
+    }
+
+    .button-link {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-decoration: none;
+      background: var(--accent-soft);
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="muted">CardHawk</p>
+      <h1>Help &amp; Support</h1>
+      <p>Find scanner tips, contact support, and review CardHawk privacy and terms information.</p>
+      <div class="links" aria-label="Support links">
+        <a class="button-link" href="#help">Help Center</a>
+        <a class="button-link" href="#privacy">Privacy Policy</a>
+        <a class="button-link" href="#terms">Terms of Use</a>
+        <a class="button-link" href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Support">Contact Support</a>
+      </div>
+    </header>
+
+    <section id="help">
+      <h2>Scanner Tips</h2>
+      <ul>
+        <li>Scan when the full card is visible.</li>
+        <li>Try a steadier, clearer moment if chat, controls, popups, or hands cover the card.</li>
+        <li>Some live apps let you hide controls with a gesture, such as swiping left.</li>
+        <li>Bright, even lighting usually helps.</li>
+      </ul>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="muted">Last updated: May 31, 2026</p>
+      <p>CardHawk is designed to identify trading cards from screen capture sessions on your device. CardHawk does not require an account, does not sell personal information, and does not include ads, purchases, or third-party analytics in the current app.</p>
+      <p>CardHawk uses screen capture permission only while you start an active scanner session. Captured frames are processed for card recognition. The release app does not intentionally upload screenshots or scanner frames to CardHawk servers.</p>
+      <p>CardHawk may use internet access to download card database updates, load card images, open support pages, and open third-party price or market links that you choose to visit. Those external sites are governed by their own privacy policies.</p>
+      <p>CardHawk may request overlay permission to show scanner controls on top of other apps, and notification permission to keep an active scanner session visible while it is running.</p>
+      <p>For privacy questions, contact <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Privacy">reebal.abelson.apps@gmail.com</a>.</p>
+    </section>
+
+    <section id="terms">
+      <h2>Terms of Use</h2>
+      <p class="muted">Last updated: May 31, 2026</p>
+      <p>CardHawk is provided as a card recognition and reference tool. Scan results, card data, and price information may be incomplete, delayed, or inaccurate, and should not be treated as financial advice or a guarantee of market value.</p>
+      <p>You are responsible for using CardHawk in a way that complies with applicable laws and with the terms of any third-party app, marketplace, livestream, or website you use alongside CardHawk.</p>
+      <p>CardHawk is not affiliated with or endorsed by Pokemon, Nintendo, Creatures, GAME FREAK, The Pokemon Company, marketplace operators, livestream platforms, or pricing providers.</p>
+      <p>CardHawk is provided without warranties to the fullest extent permitted by law. If you do not agree to these terms, do not use the app.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email support at <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Support">reebal.abelson.apps@gmail.com</a>.</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 RAbelson Apps. All rights reserved.</p>
+    </footer>
+  </main>
+</body>
+</html>
