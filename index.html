@@ -3,10 +3,233 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=support.html" />
-  <title>CardHawk Support</title>
+  <meta name="description" content="Point, scan, and price. Identify trading cards from screen capture sessions on your device with CardHawk." />
+  <meta name="keywords" content="CardHawk, card scanner, TCG pricing, trading cards, Pokemon scanner, card recognition" />
+  <meta name="author" content="RAbelson Apps" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rabelson97.github.io/CardHawk-Support/" />
+  <meta property="og:title" content="CardHawk — Point. Scan. Price." />
+  <meta property="og:description" content="Unlock real-time market value for your trading cards directly from your screen with CardHawk." />
+  <meta property="og:image" content="assets/screenshot_home.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://rabelson97.github.io/CardHawk-Support/" />
+  <meta property="twitter:title" content="CardHawk — Point. Scan. Price." />
+  <meta property="twitter:description" content="Unlock real-time market value for your trading cards directly from your screen with CardHawk." />
+  <meta property="twitter:image" content="assets/screenshot_home.png" />
+
+  <title>CardHawk — Point. Scan. Price.</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/app_icon.svg">
+
+  <!-- Google Fonts (Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cardhawk-dark': '#060913',
+            'cardhawk-card': '#0e1726',
+            'cardhawk-cyan': '#00d9ff',
+            'cardhawk-teal': '#0f7ba3',
+          },
+          fontFamily: {
+            sans: ['Roboto', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth backdrop blur support */
+    @supports (backdrop-filter: blur(12px)) {
+      .backdrop-blur-md {
+        backdrop-filter: blur(12px);
+      }
+    }
+    @supports not (backdrop-filter: blur(12px)) {
+      .backdrop-blur-md {
+        background-color: rgba(6, 9, 19, 0.95);
+      }
+    }
+
+    /* Radar sweep animation for background graphics */
+    @keyframes radar-sweep {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .radar-sweep-line {
+      transform-origin: center;
+      animation: radar-sweep 20s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .radar-sweep-line {
+        animation: none;
+      }
+    }
+  </style>
 </head>
-<body>
-  <p>Go to <a href="support.html">CardHawk Support</a>.</p>
+<body class="bg-cardhawk-dark text-slate-200 font-sans min-h-screen relative overflow-x-hidden">
+
+  <!-- Concentric Radar Background Graphics -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] border border-cardhawk-cyan/10 rounded-full"></div>
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] lg:w-[850px] lg:h-[850px] border border-cardhawk-cyan/5 rounded-full"></div>
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] lg:w-[1250px] lg:h-[1250px] border border-cardhawk-cyan/[0.03] rounded-full border-dashed"></div>
+    
+    <!-- Rotating Sweep Beam -->
+    <svg class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] lg:w-[1600px] lg:h-[1600px] radar-sweep-line opacity-[0.05]" viewBox="0 0 100 100">
+      <defs>
+        <radialGradient id="sweep-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00d9ff" stop-opacity="0.1"></stop>
+          <stop offset="30%" stop-color="#00d9ff" stop-opacity="0.03"></stop>
+          <stop offset="100%" stop-color="#00d9ff" stop-opacity="0"></stop>
+        </radialGradient>
+      </defs>
+      <path d="M 50 50 L 100 50 A 50 50 0 0 1 85.3 85.3 Z" fill="url(#sweep-grad)"></path>
+    </svg>
+  </div>
+
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,217,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,217,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0"></div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cardhawk-dark/80 border-b border-cardhawk-cyan/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="assets/app_icon.svg" class="w-8 h-8 rounded-lg shadow shadow-cardhawk-cyan/10" alt="CardHawk App Icon" />
+          <span class="text-xl font-bold tracking-tight text-white">CardHawk</span>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="flex space-x-6 text-sm" aria-label="Support links navigation">
+          <a href="support.html#help" class="text-slate-300 hover:text-cardhawk-cyan transition-colors duration-200">Help Center</a>
+          <a href="support.html#privacy" class="text-slate-300 hover:text-cardhawk-cyan transition-colors duration-200">Privacy</a>
+          <a href="support.html#terms" class="text-slate-300 hover:text-cardhawk-cyan transition-colors duration-200">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    
+    <!-- Hero Block -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Copy -->
+      <section class="lg:col-span-7 text-center lg:text-left">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-4">
+          Point. Scan. Price.
+        </h1>
+        
+        <p class="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+          Instantly find the value of your trading cards. Scan card frames directly from your screen with media capture, see market prices, and keep track of your collection in seconds.
+        </p>
+
+        <!-- Google Play Button -->
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a href="https://play.google.com/store/apps/details?id=com.ra.cardhawk" target="_blank" rel="noopener noreferrer" class="inline-block transition-transform duration-200 hover:scale-105 active:scale-98" aria-label="Download CardHawk on Google Play Store">
+            <img src="assets/play-store-badge.svg" alt="Get it on Google Play" class="h-14 w-auto object-contain" />
+          </a>
+          
+          <a href="support.html" class="inline-flex items-center text-slate-400 hover:text-cardhawk-cyan transition-colors duration-200 font-semibold text-sm">
+            Explore Support Center
+            <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- Mockup Showcase (Home - Using the updated screenshot) -->
+      <section class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-[280px] h-[575px] rounded-[1.5rem] border-6 border-slate-800 bg-slate-950 shadow-[0_0_30px_rgba(0,0,0,0.5),0_10px_20px_rgba(0,217,255,0.08)] overflow-hidden">
+          <img src="assets/screenshot_home.png" class="w-full h-full object-cover pointer-events-none" alt="CardHawk Home View" />
+        </div>
+      </section>
+
+    </div>
+
+    <!-- App Features (Promotional Text) -->
+    <section class="mt-20 lg:mt-28 border-t border-slate-900 pt-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Screen Scanner -->
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-850">
+          <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
+            <!-- Screen icon SVG (replaces camera icon) -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Active Screen Scanner</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Turn on screen capture and let CardHawk scan cards directly from other apps. It records and matches video frames on the fly using Android's Media Projection API.
+          </p>
+        </div>
+
+        <!-- Search Database -->
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-850">
+          <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Card Database</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Easily search through thousands of cards. Type in a name like "Pikachu" to check current market values and find exactly what you're looking for.
+          </p>
+        </div>
+
+        <!-- Local Discoveries -->
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-850">
+          <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Discoveries Log</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Keep a running history of every card you scan. See card sets, set names, and prices, and refresh your list anytime to get updated valuations.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="border-t border-slate-900 bg-slate-950/60 py-10 mt-16 relative z-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>
+          <span class="text-lg font-bold text-white">CardHawk</span>
+          <p class="text-xs text-slate-400 mt-1">&copy; 2026 RAbelson Apps. All rights reserved.</p>
+        </div>
+        
+        <div class="flex space-x-6 text-xs text-slate-400">
+          <a href="support.html#help" class="hover:text-cardhawk-cyan transition-colors duration-200">Help Center</a>
+          <a href="support.html#privacy" class="hover:text-cardhawk-cyan transition-colors duration-200">Privacy Policy</a>
+          <a href="support.html#terms" class="hover:text-cardhawk-cyan transition-colors duration-200">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
