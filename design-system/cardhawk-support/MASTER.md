@@ -7,8 +7,8 @@
 ---
 
 **Project:** CardHawk-Support
-**Generated:** 2026-06-03 21:43:54
-**Category:** Space Tech / Aerospace
+**Generated:** 2026-06-12 05:13:00
+**Category:** Space Tech / Aerospace / Card Collector Dashboard
 
 ---
 
@@ -18,24 +18,25 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#7C3AED` | `--color-primary` |
-| Secondary | `#A78BFA` | `--color-secondary` |
-| CTA/Accent | `#F43F5E` | `--color-cta` |
-| Background | `#0F0F23` | `--color-background` |
+| Primary | `#00D9FF` | `--color-primary` |
+| Secondary | `#0F7BA3` | `--color-secondary` |
+| CTA/Accent | `#00D9FF` | `--color-cta` |
+| Background | `#060913` | `--color-background` |
+| Card | `#0E1726` | `--color-card` |
 | Text | `#E2E8F0` | `--color-text` |
 
-**Color Notes:** Vibrant + neon + immersive colors
+**Color Notes:** High-tech, immersive cyber cyan and deep tech blues.
 
 ### Typography
 
-- **Heading Font:** Russo One
-- **Body Font:** Chakra Petch
-- **Mood:** gaming, bold, action, esports, competitive, energetic
-- **Google Fonts:** [Russo One + Chakra Petch](https://fonts.google.com/share?selection.family=Chakra+Petch:wght@300;400;500;600;700|Russo+One)
+- **Heading Font:** Roboto
+- **Body Font:** Roboto
+- **Mood:** high-tech, modern, precise, user-friendly
+- **Google Fonts:** [Roboto](https://fonts.google.com/specimen/Roboto)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 ```
 
 ### Spacing Variables
@@ -68,8 +69,9 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #F43F5E;
-  color: white;
+  background: rgba(0, 217, 255, 0.1);
+  color: #00D9FF;
+  border: 1px solid rgba(0, 217, 255, 0.3);
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -78,15 +80,15 @@
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background: rgba(0, 217, 255, 0.15);
   transform: translateY(-1px);
 }
 
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #7C3AED;
-  border: 2px solid #7C3AED;
+  color: #0F7BA3;
+  border: 2px solid #0F7BA3;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -99,7 +101,7 @@
 
 ```css
 .card {
-  background: #0F0F23;
+  background: #0E1726;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -125,9 +127,9 @@
 }
 
 .input:focus {
-  border-color: #7C3AED;
+  border-color: #00D9FF;
   outline: none;
-  box-shadow: 0 0 0 3px #7C3AED20;
+  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12);
 }
 ```
 
@@ -140,7 +142,7 @@
 }
 
 .modal {
-  background: white;
+  background: #0E1726;
   border-radius: 16px;
   padding: 32px;
   box-shadow: var(--shadow-xl);
@@ -153,20 +155,21 @@
 
 ## Style Guidelines
 
-**Style:** Vibrant & Block-based
+**Style:** High-Tech Cyber UI
 
-**Keywords:** Bold, energetic, playful, block layout, geometric shapes, high color contrast, duotone, modern, energetic
+**Keywords:** Precise, tech, clean lines, data-rich overlays, digital blue & neon cyan highlights, custom icons, dark backgrounds
 
-**Best For:** Startups, creative agencies, gaming, social media, youth-focused, entertainment, consumer
+**Best For:** Card collectors, gamers, tech utilities
 
-**Key Effects:** Large sections (48px+ gaps), animated patterns, bold hover (color shift), scroll-snap, large type (32px+), 200-300ms
+**Key Effects:** Subtle glow animations, hover states with soft borders, grid overlays, glassmorphic backdrop blurs (where supported)
 
 ### Page Pattern
 
-**Pattern Name:** Feature-Rich Showcase
+**Pattern Name:** App Store Style Landing
 
-- **CTA Placement:** Above fold
-- **Section Order:** Hero > Features > CTA
+- **Conversion Strategy:** Show high-fidelity screenshot overlays, list exact integration platform use-cases (Whatnot, eBay Live, TikTok Shop), display direct app store downloads.
+- **CTA Placement:** Above the fold, and prominent links at bottom of sections.
+- **Section Order:** Navigation > Hero with phone mockups > Feature Highlights Grid > Screenshot Gallery > Help/Support CTA > Footer
 
 ---
 
@@ -174,15 +177,16 @@
 
 - ❌ Flat design without depth
 - ❌ Text-heavy pages
+- ❌ **Purple, Violet, or Indigo accents** — Comply with the project's Purple Ban to ensure original brand styling.
 
 ### Additional Forbidden Patterns
 
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
+- ❌ **Emojis as icons** — Use SVG icons
 - ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
 - ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
 - ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
 - ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
+- ❌ **Invisible focus states** — Focus states must be visible for accessibility
 
 ---
 
@@ -191,10 +195,10 @@
 Before delivering any UI code, verify:
 
 - [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
+- [ ] All icons from consistent icon set
 - [ ] `cursor-pointer` on all clickable elements
 - [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
+- [ ] Light mode (if applicable) / Dark mode text contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
 - [ ] `prefers-reduced-motion` respected
 - [ ] Responsive: 375px, 768px, 1024px, 1440px
