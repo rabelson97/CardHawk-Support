@@ -16,16 +16,17 @@
 
 ### Color Palette
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#00D9FF` | `--color-primary` |
-| Secondary | `#0F7BA3` | `--color-secondary` |
-| CTA/Accent | `#00D9FF` | `--color-cta` |
-| Background | `#060913` | `--color-background` |
-| Card | `#0E1726` | `--color-card` |
-| Text | `#E2E8F0` | `--color-text` |
+| Role | Light Mode Hex | Dark Mode Hex | CSS Variable |
+|------|----------------|---------------|--------------|
+| Primary/Accent | `#1E6B7B` (Cerulean) | `#00F0FF` (Luminous Cyan) | `--color-primary` |
+| Secondary | `#E05A47` (Coral Red) | `#00E676` (App Neon Green) | `--color-secondary` |
+| CTA/Accent | `#E05A47` (Coral Red) | `#E05A47` (Coral Red) | `--color-cta` |
+| Background | `#FDF8F7` (Rose-White) | `#08071A` (Midnight Indigo) | `--color-background` |
+| Card/Surface | `#FFFFFF` | `#120E2E` (Cosmic Nebula) | `--color-card` |
+| Text Primary | `#201A19` | `#E2E8F0` | `--color-text-primary` |
+| Text Secondary | `#534341` | `#94A3B8` | `--color-text-secondary` |
 
-**Color Notes:** High-tech, immersive cyber cyan and deep tech blues.
+**Color Notes:** Synchronized with the app's `Color.kt` theme variables to maintain high-fidelity branding.
 
 ### Typography
 

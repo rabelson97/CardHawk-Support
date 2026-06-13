@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="100%" height="100%">
+  <!-- BACKGROUND -->
+  <path d="M256,28 L768,28 Q996,28 996,256 L996,768 Q996,996 768,996 L256,996 Q28,996 28,768 L28,256 Q28,28 256,28 Z" fill="#EDF2F1"/>
+  <path d="M28,28 L520,28 L28,520 Z" fill="#D8E0DE" fill-opacity="0.6"/>
+  <path d="M260,32 L764,32 Q992,32 992,260 L992,764 Q992,992 764,992 L260,992 Q32,992 32,764 L32,260 Q32,32 260,32 Z" fill="none" stroke="rgba(13, 37, 35, 0.08)" stroke-width="10"/>
+
+  <!-- HAWK (Straightened & Centered) -->
+  <g transform="translate(516, 592) scale(1.5)">
+    <!-- Wing -->
+    <path d="M40,-40 C20,-120 -10,-200 -30,-240 L0,-160 L-20,-150 L10,-100 L-5,-95 L35,-45 Z" fill="#4A605E" stroke="rgba(13, 37, 35, 0.13)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Body -->
+    <path d="M60,-30 C80,-38 100,-32 110,-25 L120,-18 C135,-5 145,8 142,22 L132,12 L110,12 C95,28 70,40 40,45 C10,50 -30,60 -70,45 L-120,80 L-105,50 L-150,45 L-115,25 L-140,0 L-80,15 C-50,10 -20,-10 0,-30 L-40,-60 L-15,-65 L-60,-120 L-25,-115 L-80,-200 C-10,-170 20,-90 40,-40 C45,-35 50,-32 60,-30 Z" fill="#0D2523" stroke="rgba(74, 96, 94, 0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Eye -->
+    <g transform="translate(108, -13) rotate(30)">
+      <path d="M3.5,0 A3.5,3.5,0,0,1,-3.5,0 Z" fill="#EDF2F1"/>
+    </g>
+  </g>
+</svg>

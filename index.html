@@ -46,25 +46,42 @@
   </script>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/app_icon.svg">
+  <link id="favicon" rel="icon" type="image/svg+xml" href="assets/app_icon_dark.svg">
 
   <!-- Google Fonts (Roboto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Theme Switcher Initializer (Prevents FOUC) -->
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            'cardhawk-dark': '#060913',
-            'cardhawk-card': '#0e1726',
-            'cardhawk-cyan': '#00d9ff',
-            'cardhawk-teal': '#0f7ba3',
+            'cardhawk-dark': 'var(--color-bg)',
+            'cardhawk-card': 'var(--color-surface)',
+            'cardhawk-cyan': 'rgb(var(--color-primary-rgb))',
+            'cardhawk-teal': 'rgb(var(--color-primary-rgb))',
+            'ch-text-primary': 'var(--color-text-primary)',
+            'ch-text-secondary': 'var(--color-text-secondary)',
+            'ch-border': 'var(--color-border)',
+            'ch-cta': 'var(--color-cta)',
+            'ch-neon': 'var(--color-accent-green)',
           },
           fontFamily: {
             sans: ['Roboto', 'system-ui', 'sans-serif'],
@@ -75,6 +92,38 @@
   </script>
 
   <style>
+    :root {
+      --color-bg: #FDF8F7;
+      --color-surface: #FFFFFF;
+      --color-primary-rgb: 30, 107, 123;
+      --color-text-primary: #201A19;
+      --color-text-secondary: #534341;
+      --color-border: rgba(30, 107, 123, 0.12);
+      --color-cta: #E05A47;
+      --color-accent-green: #E05A47;
+      --grid-line-color: rgba(30, 107, 123, 0.02);
+      --radar-line-color: rgba(30, 107, 123, 0.04);
+    }
+    
+    html.dark {
+      --color-bg: #08071A;
+      --color-surface: #120E2E;
+      --color-primary-rgb: 0, 240, 255;
+      --color-text-primary: #E2E8F0;
+      --color-text-secondary: #94A3B8;
+      --color-border: rgba(0, 240, 255, 0.12);
+      --color-cta: #E05A47;
+      --color-accent-green: #00E676;
+      --grid-line-color: rgba(0, 240, 255, 0.015);
+      --radar-line-color: rgba(0, 240, 255, 0.04);
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
     /* Smooth backdrop blur support */
     @supports (backdrop-filter: blur(12px)) {
       .backdrop-blur-md {
@@ -87,6 +136,34 @@
       }
     }
 
+    /* Grid overlay pattern */
+    .bg-grid-overlay {
+      background-image: linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+                        linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+      background-size: 4rem 4rem;
+    }
+
+    /* Subtle Radar Circles border color using rgb variables */
+    .border-radar-1 {
+      border-color: rgba(var(--color-primary-rgb), 0.08);
+    }
+    .border-radar-2 {
+      border-color: rgba(var(--color-primary-rgb), 0.04);
+    }
+    .border-radar-3 {
+      border-color: rgba(var(--color-primary-rgb), 0.015);
+    }
+
+    /* Custom Support Button styled dynamically with opacity rules */
+    .btn-support-link {
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+      border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+      color: rgb(var(--color-primary-rgb));
+    }
+    .btn-support-link:hover {
+      background-color: rgba(var(--color-primary-rgb), 0.15);
+    }
+
     /* Radar sweep animation for background graphics */
     @keyframes radar-sweep {
       from { transform: rotate(0deg); }
@@ -96,28 +173,50 @@
       transform-origin: center;
       animation: radar-sweep 20s linear infinite;
     }
+
+    /* Interactive Scanner Mockup Animations */
+    @keyframes laser-sweep {
+      0% { top: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .laser-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgb(var(--color-primary-rgb)), transparent);
+      box-shadow: 0 0 10px rgb(var(--color-primary-rgb));
+      animation: laser-sweep 2s ease-in-out infinite;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .radar-sweep-line {
         animation: none;
       }
+      .laser-line {
+        animation: none !important;
+        display: none;
+      }
     }
   </style>
 </head>
-<body class="bg-cardhawk-dark text-slate-200 font-sans min-h-screen relative overflow-x-hidden">
+<body class="bg-cardhawk-dark text-ch-text-primary font-sans min-h-screen relative overflow-x-hidden transition-colors duration-300">
 
   <!-- Concentric Radar Background Graphics -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] border border-cardhawk-cyan/10 rounded-full"></div>
-    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] lg:w-[850px] lg:h-[850px] border border-cardhawk-cyan/5 rounded-full"></div>
-    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] lg:w-[1250px] lg:h-[1250px] border border-cardhawk-cyan/[0.03] rounded-full border-dashed"></div>
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] border border-radar-1 rounded-full transition-colors duration-300"></div>
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] lg:w-[850px] lg:h-[850px] border border-radar-2 rounded-full transition-colors duration-300"></div>
+    <div class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] lg:w-[1250px] lg:h-[1250px] border border-radar-3 rounded-full border-dashed transition-colors duration-300"></div>
     
     <!-- Rotating Sweep Beam -->
-    <svg class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] lg:w-[1600px] lg:h-[1600px] radar-sweep-line opacity-[0.05]" viewBox="0 0 100 100">
+    <svg class="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] lg:w-[1600px] lg:h-[1600px] radar-sweep-line opacity-[0.04] transition-colors duration-300" viewBox="0 0 100 100">
       <defs>
         <radialGradient id="sweep-grad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#00d9ff" stop-opacity="0.1"></stop>
-          <stop offset="30%" stop-color="#00d9ff" stop-opacity="0.03"></stop>
-          <stop offset="100%" stop-color="#00d9ff" stop-opacity="0"></stop>
+          <stop offset="0%" stop-color="rgb(var(--color-primary-rgb))" stop-opacity="0.1"></stop>
+          <stop offset="30%" stop-color="rgb(var(--color-primary-rgb))" stop-opacity="0.03"></stop>
+          <stop offset="100%" stop-color="rgb(var(--color-primary-rgb))" stop-opacity="0"></stop>
         </radialGradient>
       </defs>
       <path d="M 50 50 L 100 50 A 50 50 0 0 1 85.3 85.3 Z" fill="url(#sweep-grad)"></path>
@@ -125,23 +224,37 @@
   </div>
 
   <!-- Grid overlay -->
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,217,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,217,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0"></div>
+  <div class="absolute inset-0 bg-grid-overlay pointer-events-none z-0"></div>
 
   <!-- Navigation Header -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-cardhawk-dark/80 border-b border-cardhawk-cyan/10">
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cardhawk-dark/80 border-b border-ch-border transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
         <div class="flex items-center space-x-3">
-          <img src="assets/app_icon.svg" class="w-8 h-8 rounded-lg shadow shadow-cardhawk-cyan/10" alt="CardHawk App Icon" />
-          <span class="text-xl font-bold tracking-tight text-white">CardHawk</span>
+          <img id="header-logo" src="assets/app_icon_dark.svg" class="w-8 h-8 rounded-lg shadow shadow-cardhawk-cyan/10" alt="CardHawk App Icon" />
+          <span class="text-xl font-bold tracking-tight text-ch-text-primary">CardHawk</span>
         </div>
         
-        <!-- Navigation -->
-        <nav class="flex space-x-6 text-sm" aria-label="Site navigation">
-          <a href="#screenshots" class="text-slate-300 hover:text-cardhawk-cyan transition-colors duration-200">Screenshots</a>
-          <a href="support.html" class="text-slate-300 hover:text-cardhawk-cyan transition-colors duration-200">Support</a>
-        </nav>
+        <!-- Navigation & Theme Toggle -->
+        <div class="flex items-center space-x-6">
+          <nav class="flex space-x-6 text-sm" aria-label="Site navigation">
+            <a href="#screenshots" class="text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-medium">Screenshots</a>
+            <a href="support.html" class="text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-medium">Support</a>
+          </nav>
+          
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" class="p-2 rounded-lg text-ch-text-secondary hover:text-cardhawk-cyan hover:bg-ch-border transition-all duration-200 cursor-pointer" aria-label="Toggle Theme">
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg id="theme-toggle-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg id="theme-toggle-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -154,11 +267,11 @@
       
       <!-- Text Copy -->
       <section class="lg:col-span-7 text-center lg:text-left">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-4">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-ch-text-primary mb-4">
           Identify Pokémon cards<br class="hidden sm:inline" /> right from your screen.
         </h1>
         
-        <p class="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+        <p class="text-lg text-ch-text-secondary leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
           Watching Whatnot, eBay Live, TikTok Shop, or YouTube box breaks? CardHawk scans cards on-screen and pulls up market prices without leaving the stream.
         </p>
 
@@ -168,7 +281,7 @@
             <img src="assets/play-store-badge.svg" alt="Get it on Google Play" class="h-14 w-auto object-contain" />
           </a>
           
-          <a href="support.html" class="inline-flex items-center text-slate-400 hover:text-cardhawk-cyan transition-colors duration-200 font-semibold text-sm">
+          <a href="support.html" class="inline-flex items-center text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-semibold text-sm">
             Support, Privacy, and Terms
             <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -177,60 +290,108 @@
         </div>
       </section>
 
-      <!-- App screenshots -->
-      <section class="lg:col-span-5 flex justify-center lg:justify-end">
-        <div class="relative w-full max-w-[360px] min-h-[610px] sm:min-h-[660px]">
-          <div class="absolute left-0 top-10 w-[190px] sm:w-[210px] rounded-[1.5rem] border-[6px] border-slate-800 bg-slate-950 shadow-[0_0_30px_rgba(0,0,0,0.5),0_10px_20px_rgba(0,217,255,0.08)] overflow-hidden rotate-[-4deg]">
-            <img src="assets/screenshot_stream_scan.png" class="w-full h-auto pointer-events-none" alt="CardHawk scanning a Pokemon card visible on screen" />
-          </div>
-          <div class="absolute right-0 top-0 w-[220px] sm:w-[240px] rounded-[1.5rem] border-[6px] border-slate-800 bg-slate-950 shadow-[0_0_34px_rgba(0,0,0,0.55),0_12px_28px_rgba(0,217,255,0.12)] overflow-hidden rotate-[3deg]">
-            <img src="assets/screenshot_scanner_result.png" class="w-full h-auto pointer-events-none" alt="CardHawk scanner result sheet with price references" />
+      <!-- Interactive Phone Mockup -->
+      <section class="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
+        <!-- Interactive visual helper badge -->
+        <div class="mb-3 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cardhawk-cyan/10 border border-cardhawk-cyan/20 animate-pulse text-[11px] font-bold text-cardhawk-cyan">
+          <span>📱</span>
+          <span>Click scan button to try simulator</span>
+        </div>
+        
+        <div class="relative w-[285px] h-[585px] sm:w-[315px] sm:h-[645px] rounded-[2.5rem] border-[8px] border-slate-800 dark:border-slate-900 bg-slate-950 shadow-[0_0_40px_rgba(0,0,0,0.6),0_15px_30px_rgba(var(--color-primary-rgb),0.1)] overflow-hidden">
+          
+          <!-- Mock Phone Screen -->
+          <div class="relative w-full h-full overflow-hidden select-none">
+            
+            <!-- Screen 1: Home View -->
+            <div id="mock-screen-home" class="absolute inset-0 transition-opacity duration-300 opacity-100 z-10">
+              <img id="mock-img-home" src="assets/screenshot_home_dark.png" class="w-full h-full object-cover object-top pointer-events-none" alt="CardHawk Home View" />
+              
+              <!-- FAB scan trigger overlay (covers FAB in screenshot) -->
+              <div id="mock-btn-scan-trigger" class="absolute bottom-[4.5%] right-[5.5%] w-[62px] h-[62px] rounded-full cursor-pointer z-20 flex items-center justify-center">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-cardhawk-cyan/35 animate-ping opacity-75"></span>
+              </div>
+            </div>
+            
+            <!-- Screen 2: Viewfinder Screen -->
+            <div id="mock-screen-viewfinder" class="absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none z-10 bg-black">
+              <img src="assets/screenshot_stream_scan.png" class="w-full h-full object-cover object-top pointer-events-none" alt="CardHawk Scanning View" />
+              
+              <!-- Laser Sweep Bar -->
+              <div class="laser-line"></div>
+              
+              <!-- Scanning loader overlay -->
+              <div class="absolute top-[20%] left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur px-4 py-2 rounded-full border border-ch-border flex items-center space-x-2 text-xs text-white">
+                <svg class="animate-spin h-3.5 w-3.5 text-cardhawk-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="font-bold tracking-wider text-[10px]">SCANNING...</span>
+              </div>
+            </div>
+
+            <!-- Custom Mock Bottom Sheet (Literal Screenshot) -->
+            <div id="mock-bottom-sheet" class="absolute bottom-0 left-0 right-0 w-full h-auto transform translate-y-full transition-transform duration-300 ease-out z-20 overflow-hidden rounded-t-[1.8rem] bg-[#E9ECF4] dark:bg-[#2C3340] shadow-[0_-8px_24px_rgba(0,0,0,0.5)]">
+              <img id="mock-img-result" src="assets/screenshot_scanner_result.png" class="w-full h-auto pointer-events-none block" alt="CardHawk Scanner Result" />
+              
+              <!-- Close overlay button (placed exactly over the 'X' icon at top right) -->
+              <div id="mock-btn-close" class="absolute top-[5%] right-[6%] w-10 h-10 rounded-full cursor-pointer z-30 flex items-center justify-center"></div>
+              
+              <!-- PriceCharting link overlay (placed over the PriceCharting CTA button at bottom) -->
+              <a href="https://www.pricecharting.com/search?q=Hitmontop+Ascended+Heroes+240" target="_blank" class="absolute bottom-[15%] left-[5%] right-[5%] h-[8.5%] rounded-xl cursor-pointer z-30" aria-label="View on PriceCharting"></a>
+              
+              <!-- eBay link overlay -->
+              <a href="https://www.ebay.com/sch/i.html?_nkw=Hitmontop+Ascended+Heroes+240" target="_blank" class="absolute bottom-[5%] left-[5%] w-[42%] h-[7.5%] rounded-xl cursor-pointer z-30" aria-label="Search on eBay"></a>
+              
+              <!-- TCGplayer link overlay -->
+              <a href="https://www.tcgplayer.com/search/all/product?q=Hitmontop+Ascended+Heroes+240" target="_blank" class="absolute bottom-[5%] right-[5%] w-[42%] h-[7.5%] rounded-xl cursor-pointer z-30" aria-label="Search on TCGplayer"></a>
+            </div>
+
           </div>
         </div>
       </section>
 
     </div>
 
-    <!-- App Features (Promotional Text) -->
-    <section class="mt-20 lg:mt-28 border-t border-slate-900 pt-16">
+    <!-- App Features -->
+    <section class="mt-20 lg:mt-28 border-t border-ch-border pt-16">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Screen Scanner -->
-        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-800">
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-ch-border transition-colors duration-300">
           <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
-            <!-- Screen icon SVG (replaces camera icon) -->
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Overlay Screen Scanner</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
+          <h3 class="text-lg font-bold text-ch-text-primary mb-2">Overlay Screen Scanner</h3>
+          <p class="text-sm text-ch-text-secondary leading-relaxed">
             Runs on top of any app. Spot a card on a Whatnot stream or YouTube video? Tap to scan it.
           </p>
         </div>
 
         <!-- Search Database -->
-        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-800">
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-ch-border transition-colors duration-300">
           <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Offline Card Database</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Thousands of Pokémon cards stored locally. Search by name, browse sets, and revisit past discoveries.
+          <h3 class="text-lg font-bold text-ch-text-primary mb-2">Offline Card Database</h3>
+          <p class="text-sm text-ch-text-secondary leading-relaxed">
+            Thousands of Pokémon cards stored locally. Search by name, browse sets, and Revisit discoveries.
           </p>
         </div>
 
         <!-- Local Discoveries -->
-        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-slate-800">
+        <div class="p-6 bg-cardhawk-card/40 rounded-2xl border border-ch-border transition-colors duration-300">
           <div class="w-10 h-10 rounded-lg bg-cardhawk-cyan/10 flex items-center justify-center text-cardhawk-cyan mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">One-Tap Price Check</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
+          <h3 class="text-lg font-bold text-ch-text-primary mb-2">One-Tap Price Check</h3>
+          <p class="text-sm text-ch-text-secondary leading-relaxed">
             Jump straight to PriceCharting, eBay, or TCGplayer. No typing, no searching, just one tap.
           </p>
         </div>
@@ -239,44 +400,50 @@
     </section>
 
     <!-- Screenshots -->
-    <section id="screenshots" class="mt-14">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="rounded-2xl border border-slate-800 bg-cardhawk-card/30 p-3">
-          <img src="assets/screenshot_home_light.png" class="w-full rounded-xl border border-slate-800" alt="CardHawk recent discoveries in light mode" />
+    <section id="screenshots" class="mt-20 border-t border-ch-border pt-16">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center text-ch-text-primary mb-8">
+        Showcasing the App
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Dyn. Home Screen -->
+        <div class="rounded-2xl border border-ch-border bg-cardhawk-card/20 p-3 shadow-md hover:shadow-lg transition-all duration-300">
+          <img id="screenshot-dynamic-home" src="assets/screenshot_home_dark.png" class="w-full rounded-xl border border-ch-border transition-colors duration-300" alt="CardHawk Home discoveries screen" />
+          <p class="text-xs text-center text-ch-text-secondary font-bold tracking-wider mt-3 uppercase">App Home Dashboard</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-cardhawk-card/30 p-3">
-          <img src="assets/screenshot_home_dark.png" class="w-full rounded-xl border border-slate-800" alt="CardHawk recent discoveries in dark mode" />
+        <!-- Scan viewfinder -->
+        <div class="rounded-2xl border border-ch-border bg-cardhawk-card/20 p-3 shadow-md hover:shadow-lg transition-all duration-300">
+          <img src="assets/screenshot_stream_scan.png" class="w-full rounded-xl border border-ch-border transition-colors duration-300" alt="CardHawk scanning viewfinder screen" />
+          <p class="text-xs text-center text-ch-text-secondary font-bold tracking-wider mt-3 uppercase">Stream Overlay View</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-cardhawk-card/30 p-3">
-          <img src="assets/screenshot_stream_scan.png" class="w-full rounded-xl border border-slate-800" alt="CardHawk scanning a card from an on-screen stream" />
-        </div>
-        <div class="rounded-2xl border border-slate-800 bg-cardhawk-card/30 p-3">
-          <img src="assets/screenshot_scanner_result.png" class="w-full rounded-xl border border-slate-800" alt="CardHawk screen scanner result with marketplace links" />
+        <!-- Result sheet -->
+        <div class="rounded-2xl border border-ch-border bg-cardhawk-card/20 p-3 shadow-md hover:shadow-lg transition-all duration-300">
+          <img id="screenshot-dynamic-result" src="assets/screenshot_scanner_result.png" class="w-full rounded-xl border border-ch-border transition-colors duration-300" alt="CardHawk scanner results details" />
+          <p class="text-xs text-center text-ch-text-secondary font-bold tracking-wider mt-3 uppercase">Discovery Price Sheet</p>
         </div>
       </div>
     </section>
 
-    <section class="mt-14 bg-cardhawk-card/30 border border-slate-800 rounded-2xl p-6 sm:p-8 text-center">
-      <h2 class="text-2xl font-bold text-white mb-3">Questions? We've got you.</h2>
-      <p class="text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto">
+    <section class="mt-20 bg-cardhawk-card/30 border border-ch-border rounded-2xl p-6 sm:p-10 text-center transition-colors duration-300">
+      <h2 class="text-2xl font-bold text-ch-text-primary mb-3">Questions? We've got you covered.</h2>
+      <p class="text-sm text-ch-text-secondary leading-relaxed max-w-2xl mx-auto">
         Find scanner tips, privacy details, terms, and pricing-source disclosures on the support page.
       </p>
-      <a href="support.html" class="inline-flex mt-5 px-5 py-3 rounded-lg bg-cardhawk-cyan/10 border border-cardhawk-cyan/30 text-cardhawk-cyan font-bold hover:bg-cardhawk-cyan/15 transition-colors duration-200">
+      <a href="support.html" class="inline-flex mt-5 px-6 py-3 rounded-lg btn-support-link font-bold transition-colors duration-200 cursor-pointer">
         Get Support
       </a>
     </section>
   </main>
 
   <!-- Footer Section -->
-  <footer class="border-t border-slate-900 bg-slate-950/60 py-10 mt-16 relative z-10">
+  <footer class="border-t border-ch-border bg-cardhawk-dark/40 py-10 mt-20 relative z-10 transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
         <div>
-          <span class="text-lg font-bold text-white">CardHawk</span>
-          <p class="text-xs text-slate-400 mt-1">&copy; 2026 RAbelson Apps. All rights reserved.</p>
+          <span class="text-lg font-bold text-ch-text-primary">CardHawk</span>
+          <p class="text-xs text-ch-text-secondary mt-1">&copy; 2026 RAbelson Apps. All rights reserved.</p>
         </div>
         
-        <div class="flex space-x-6 text-xs text-slate-400">
+        <div class="flex space-x-6 text-xs text-ch-text-secondary">
           <a href="support.html" class="hover:text-cardhawk-cyan transition-colors duration-200">Support</a>
           <a href="support.html#privacy" class="hover:text-cardhawk-cyan transition-colors duration-200">Privacy Policy</a>
           <a href="support.html#terms" class="hover:text-cardhawk-cyan transition-colors duration-200">Terms of Use</a>
@@ -284,5 +451,111 @@
       </div>
     </div>
   </footer>
+
+  <!-- Theme Toggle & Mockup JS Logic -->
+  <script>
+    // Theme switching logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        root.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+      updateScreenshotsAndMockup(theme);
+    }
+
+    function updateScreenshotsAndMockup(theme) {
+      // Header logo icon
+      const headerIcon = document.getElementById('header-logo');
+      if (headerIcon) {
+        headerIcon.src = theme === 'dark' ? 'assets/app_icon_dark.svg' : 'assets/app_icon_light.svg';
+      }
+
+      // Favicon
+      const favicon = document.getElementById('favicon');
+      if (favicon) {
+        favicon.type = 'image/svg+xml';
+        favicon.href = theme === 'dark' ? 'assets/app_icon_dark.svg' : 'assets/app_icon_light.svg';
+      }
+
+      // Gallery dynamic home screen
+      const dynamicHome = document.getElementById('screenshot-dynamic-home');
+      if (dynamicHome) {
+        dynamicHome.src = theme === 'dark' ? 'assets/screenshot_home_dark.png' : 'assets/screenshot_home_light.png';
+      }
+
+      // Gallery dynamic result screen
+      const dynamicResult = document.getElementById('screenshot-dynamic-result');
+      if (dynamicResult) {
+        dynamicResult.src = theme === 'dark' ? 'assets/screenshot_scanner_result.png' : 'assets/screenshot_scanner_result_light.png';
+      }
+      
+      // Mockup screen 1 image
+      const mockImgHome = document.getElementById('mock-img-home');
+      if (mockImgHome) {
+        mockImgHome.src = theme === 'dark' ? 'assets/screenshot_home_dark.png' : 'assets/screenshot_home_light.png';
+      }
+
+      // Mockup bottom sheet result image
+      const mockImgResult = document.getElementById('mock-img-result');
+      if (mockImgResult) {
+        mockImgResult.src = theme === 'dark' ? 'assets/screenshot_scanner_result.png' : 'assets/screenshot_scanner_result_light.png';
+      }
+    }
+
+    // Toggle button click listener
+    toggleBtn.addEventListener('click', () => {
+      const isDark = root.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Initialize display values on load
+    updateScreenshotsAndMockup(root.classList.contains('dark') ? 'dark' : 'light');
+
+    // Interactive Simulator State Machine
+    const mockBtnScanTrigger = document.getElementById('mock-btn-scan-trigger');
+    const mockScreenHome = document.getElementById('mock-screen-home');
+    const mockScreenViewfinder = document.getElementById('mock-screen-viewfinder');
+    const mockBottomSheet = document.getElementById('mock-bottom-sheet');
+    const mockBtnClose = document.getElementById('mock-btn-close');
+
+    let simulatorTimeout;
+
+    mockBtnScanTrigger.addEventListener('click', () => {
+      // 1. Hide home screen, show viewfinder screen
+      mockScreenHome.style.opacity = '0';
+      mockScreenHome.style.pointerEvents = 'none';
+      
+      mockScreenViewfinder.style.opacity = '1';
+      mockScreenViewfinder.style.pointerEvents = 'auto';
+
+      // 2. Clear any old timers
+      clearTimeout(simulatorTimeout);
+
+      // 3. Wait 2 seconds (for sweep laser), then slide up bottom sheet
+      simulatorTimeout = setTimeout(() => {
+        mockBottomSheet.style.transform = 'translateY(0)';
+      }, 2000);
+    });
+
+    mockBtnClose.addEventListener('click', () => {
+      // 1. Slide down bottom sheet
+      mockBottomSheet.style.transform = 'translateY(100%)';
+      
+      // 2. Swap screens back to home
+      setTimeout(() => {
+        mockScreenViewfinder.style.opacity = '0';
+        mockScreenViewfinder.style.pointerEvents = 'none';
+        
+        mockScreenHome.style.opacity = '1';
+        mockScreenHome.style.pointerEvents = 'auto';
+      }, 300);
+    });
+  </script>
 </body>
 </html>
