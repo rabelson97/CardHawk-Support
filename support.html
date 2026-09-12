@@ -11,171 +11,55 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- Theme Switcher Initializer (Prevents FOUC) -->
-  <script>
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  </script>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            'cardhawk-dark': 'var(--color-bg)',
-            'cardhawk-card': 'var(--color-surface)',
-            'cardhawk-cyan': 'rgb(var(--color-primary-rgb))',
-            'cardhawk-teal': 'rgb(var(--color-primary-rgb))',
-            'ch-text-primary': 'var(--color-text-primary)',
-            'ch-text-secondary': 'var(--color-text-secondary)',
-            'ch-border': 'var(--color-border)',
-            'ch-cta': 'var(--color-cta)',
-            'ch-neon': 'var(--color-accent-green)',
-          },
-          fontFamily: {
-            sans: ['Roboto', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    :root {
-      --color-bg: #FDF8F7;
-      --color-surface: #FFFFFF;
-      --color-primary-rgb: 30, 107, 123;
-      --color-text-primary: #201A19;
-      --color-text-secondary: #534341;
-      --color-border: rgba(30, 107, 123, 0.12);
-      --color-cta: #E05A47;
-      --color-accent-green: #E05A47;
-      --grid-line-color: rgba(30, 107, 123, 0.02);
-    }
-    
-    html.dark {
-      --color-bg: #08071A;
-      --color-surface: #120E2E;
-      --color-primary-rgb: 0, 240, 255;
-      --color-text-primary: #E2E8F0;
-      --color-text-secondary: #94A3B8;
-      --color-border: rgba(0, 240, 255, 0.12);
-      --color-cta: #E05A47;
-      --color-accent-green: #00E676;
-      --grid-line-color: rgba(0, 240, 255, 0.015);
-    }
-
-    body {
-      background-color: var(--color-bg);
-      color: var(--color-text-primary);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* Smooth backdrop blur support */
-    @supports (backdrop-filter: blur(12px)) {
-      .backdrop-blur-md {
-        backdrop-filter: blur(12px);
-      }
-    }
-    @supports not (backdrop-filter: blur(12px)) {
-      .backdrop-blur-md {
-        background-color: rgba(6, 9, 19, 0.95);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <script src="site.js" defer></script>
 </head>
-<body class="bg-cardhawk-dark text-ch-text-primary font-sans min-h-screen transition-colors duration-300">
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-cardhawk-dark/80 border-b border-ch-border transition-all duration-300">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <a href="index.html" class="flex items-center space-x-3">
-          <img id="header-logo" src="assets/app_icon_dark.svg" class="w-8 h-8 rounded-lg shadow shadow-cardhawk-cyan/10" alt="CardHawk App Icon" />
-          <span class="text-xl font-bold tracking-tight text-ch-text-primary">CardHawk</span>
-        </a>
-        
-        <!-- Navigation & Toggle -->
-        <div class="flex items-center space-x-6">
-          <nav class="flex space-x-5 text-sm" aria-label="Support navigation">
-            <a href="#support" class="text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-medium">Support</a>
-            <a href="#privacy" class="text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-medium">Privacy</a>
-            <a href="#terms" class="text-ch-text-secondary hover:text-cardhawk-cyan transition-colors duration-200 font-medium">Terms</a>
-          </nav>
-          
-          <!-- Theme Toggle Button -->
-          <button id="theme-toggle" class="p-2 rounded-lg text-ch-text-secondary hover:text-cardhawk-cyan hover:bg-ch-border transition-all duration-200 cursor-pointer" aria-label="Toggle Theme">
-            <!-- Sun Icon (shown in dark mode) -->
-            <svg id="theme-toggle-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
-            <!-- Moon Icon (shown in light mode) -->
-            <svg id="theme-toggle-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-    <section class="mb-10">
-      <p class="text-cardhawk-cyan font-bold text-sm uppercase tracking-[0.18em] mb-3">Support</p>
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-ch-text-primary mb-4">
-        We're here to help.
-      </h1>
-      <p class="text-lg text-ch-text-secondary leading-relaxed max-w-3xl">
-        Scanner tips, privacy policy, terms of use, and pricing-source disclosures, all in one place.
-      </p>
-    </section>
-
-    <section id="support" class="bg-cardhawk-card/40 border border-ch-border rounded-2xl p-6 sm:p-8 mb-8 transition-colors duration-300">
-      <h2 class="text-2xl font-bold text-ch-text-primary mb-4">Contact & Scanner Tips</h2>
-      <div class="space-y-4 text-sm text-ch-text-secondary leading-relaxed">
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-bar"><div class="bar-content">
+  <a class="brand" href="index.html"><img id="header-logo" src="assets/app_icon_light.svg" width="32" height="32" alt="" />CardHawk</a>
+  <nav aria-label="Site navigation"><a href="index.html" >Overview</a><a href="support.html" aria-current="page">Support</a></nav>
+  <button id="theme-toggle" class="icon-button" aria-label="Switch to dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.4A9 9 0 0 1 8.6 3.6a9 9 0 1 0 11.8 11.8Z"/></svg></button>
+</div></header><main id="main" class="page support-page" tabindex="-1">
+  <div class="support-heading"><p class="eyebrow">Support</p><h1>We're here to help.</h1><p class="intro">Scanner tips, privacy policy, terms of use, and pricing-source disclosures, all in one place.</p></div>
+  <div class="support-layout"><aside><nav class="section-nav" aria-label="On this page"><p>On this page</p><a href="#support">Contact & Scanner Tips</a><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a><a href="#disclosures">Pricing Sources and Paid Links</a></nav></aside>
+  <div class="document"><section id="support" class="document-section">
+      <h2>Contact & Scanner Tips</h2>
+      <div>
         <p>
           Email support at
-          <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Support" class="text-cardhawk-cyan hover:underline font-bold">reebal.abelson.apps@gmail.com</a>.
+          <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Support">reebal.abelson.apps@gmail.com</a>.
         </p>
-        <ul class="space-y-3">
-          <li class="flex items-start"><span class="text-cardhawk-cyan mr-2.5">•</span><span>Make sure the full card is visible on screen before scanning.</span></li>
-          <li class="flex items-start"><span class="text-cardhawk-cyan mr-2.5">•</span><span>Best results come from a steady, clear frame. Hide chat overlays or controls if you can.</span></li>
-          <li class="flex items-start"><span class="text-cardhawk-cyan mr-2.5">•</span><span>Some live apps let you hide controls with a gesture, such as swiping left.</span></li>
-          <li class="flex items-start"><span class="text-cardhawk-cyan mr-2.5">•</span><span>Bright, even lighting usually helps when the source video is a live camera feed.</span></li>
+        <ul>
+          <li><span>Make sure the full card is visible on screen before scanning.</span></li>
+          <li><span>Best results come from a steady, clear frame. Hide chat overlays or controls if you can.</span></li>
+          <li><span>Some live apps let you hide controls with a gesture, such as swiping left.</span></li>
+          <li><span>Bright, even lighting usually helps when the source video is a live camera feed.</span></li>
         </ul>
       </div>
     </section>
-
-    <section id="privacy" class="bg-cardhawk-card/40 border border-ch-border rounded-2xl p-6 sm:p-8 mb-8 transition-colors duration-300">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-ch-border pb-4 mb-5">
-        <h2 class="text-2xl font-bold text-ch-text-primary">Privacy Policy</h2>
-        <span class="text-xs text-ch-text-secondary/70">Last updated: June 12, 2026</span>
+<section id="privacy" class="document-section">
+      <div>
+        <h2>Privacy Policy</h2>
+        <p class="updated">Last updated: <time datetime="2026-06-12">June 12, 2026</time></p>
       </div>
-      <div class="space-y-4 text-sm text-ch-text-secondary leading-relaxed">
+      <div>
         <p>CardHawk is designed to identify Pokémon cards from screen capture sessions on your device. CardHawk does not require an account, does not sell personal information, and does not include ads or in-app purchases in the current app.</p>
         <p>CardHawk uses screen capture permission only when you start an active scanner session. Captured frames are processed for card recognition. CardHawk does not upload screenshots or scanner frames to external servers; all image processing for card recognition is performed entirely offline on your local device.</p>
         <p>CardHawk may store recent discoveries, downloaded card database files, card images, price references, and app settings on your device so the app can work quickly and remember your history.</p>
         <p>CardHawk may use internet access to download card database updates from public release files, load card images, open support pages, and open third-party price or market links that you choose to visit. Those external sites are governed by their own privacy policies.</p>
         <p>CardHawk may request overlay permission to show scanner controls on top of other apps, and notification permission to keep an active scanner session visible while it is running.</p>
         <p>The current app uses local diagnostic logging for development and troubleshooting. If third-party analytics or crash reporting is added later, this policy will be updated before that data collection begins.</p>
-        <p>For privacy questions, contact <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Privacy" class="text-cardhawk-cyan hover:underline font-bold">reebal.abelson.apps@gmail.com</a>.</p>
+        <p>For privacy questions, contact <a href="mailto:reebal.abelson.apps@gmail.com?subject=CardHawk%20Privacy">reebal.abelson.apps@gmail.com</a>.</p>
       </div>
     </section>
-
-    <section id="terms" class="bg-cardhawk-card/40 border border-ch-border rounded-2xl p-6 sm:p-8 mb-8 transition-colors duration-300">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-ch-border pb-4 mb-5">
-        <h2 class="text-2xl font-bold text-ch-text-primary">Terms of Use</h2>
-        <span class="text-xs text-ch-text-secondary/70">Last updated: June 12, 2026</span>
+<section id="terms" class="document-section">
+      <div>
+        <h2>Terms of Use</h2>
+        <p class="updated">Last updated: <time datetime="2026-06-12">June 12, 2026</time></p>
       </div>
-      <div class="space-y-4 text-sm text-ch-text-secondary leading-relaxed">
+      <div>
         <p>CardHawk is provided as a card recognition and reference tool. Scan results, card data, and price information may be incomplete, delayed, or inaccurate, and should not be treated as financial advice, appraisal advice, or a guarantee of market value.</p>
         <p>You are responsible for using CardHawk in a way that complies with applicable laws and with the terms of any third-party app, marketplace, livestream, or website you use alongside CardHawk.</p>
         <p>CardHawk may open third-party websites and marketplace pages, including PriceCharting, eBay, and TCGplayer. Those services are responsible for their own pages, listings, prices, policies, and transactions.</p>
@@ -184,67 +68,14 @@
         <p>CardHawk is provided without warranties to the fullest extent permitted by law. If you do not agree to these terms, do not use the app.</p>
       </div>
     </section>
-
-    <section id="disclosures" class="bg-cardhawk-card/40 border border-ch-border rounded-2xl p-6 sm:p-8 transition-colors duration-300">
-      <h2 class="text-2xl font-bold text-ch-text-primary mb-4">Pricing Sources and Paid Links</h2>
-      <div class="space-y-4 text-sm text-ch-text-secondary leading-relaxed">
+<section id="disclosures" class="document-section">
+      <h2>Pricing Sources and Paid Links</h2>
+      <div>
         <p>CardHawk shows card data and pricing references from third-party sources. Prices can be delayed, incomplete, or different from the final sale price for a specific card condition.</p>
         <p>Marketplace buttons may use affiliate links. CardHawk may earn a commission when you choose to visit or buy through those links, at no extra cost to you.</p>
         <p>PriceCharting, eBay, TCGplayer, Pokémon, Nintendo, Creatures, GAME FREAK, and The Pokémon Company are independent third parties. CardHawk is not endorsed by or affiliated with them.</p>
       </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-ch-border bg-cardhawk-dark/40 py-10 mt-20 transition-colors duration-300">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-      <div>
-        <span class="text-lg font-bold text-ch-text-primary">CardHawk</span>
-        <p class="text-xs text-ch-text-secondary mt-1">&copy; 2026 RAbelson Apps. All rights reserved.</p>
-      </div>
-      <div class="flex space-x-6 text-xs text-ch-text-secondary">
-        <a href="index.html" class="hover:text-cardhawk-cyan transition-colors duration-200">Landing Page</a>
-        <a href="#privacy" class="hover:text-cardhawk-cyan transition-colors duration-200">Privacy</a>
-        <a href="#terms" class="hover:text-cardhawk-cyan transition-colors duration-200">Terms</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Theme Toggle Logic -->
-  <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const root = document.documentElement;
-
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        root.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        root.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-      updateHeaderIcon(theme);
-    }
-
-    function updateHeaderIcon(theme) {
-      const headerIcon = document.getElementById('header-logo');
-      if (headerIcon) {
-        headerIcon.src = theme === 'dark' ? 'assets/app_icon_dark.svg' : 'assets/app_icon_light.svg';
-      }
-
-      const favicon = document.getElementById('favicon');
-      if (favicon) {
-        favicon.type = 'image/svg+xml';
-        favicon.href = theme === 'dark' ? 'assets/app_icon_dark.svg' : 'assets/app_icon_light.svg';
-      }
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      const isDark = root.classList.contains('dark');
-      applyTheme(isDark ? 'light' : 'dark');
-    });
-
-    // Initialize display values on load
-    updateHeaderIcon(root.classList.contains('dark') ? 'dark' : 'light');
-  </script>
+    </section></div></div>
+</main><footer class="site-footer"><div class="footer-content"><div><a class="brand" href="index.html">CardHawk</a><p>© 2026 RAbelson Apps. All rights reserved.</p></div><nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="support.html#privacy">Privacy Policy</a><a href="support.html#terms">Terms of Use</a></nav></div></footer>
 </body>
 </html>
