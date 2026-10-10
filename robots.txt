@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rabelson97.github.io/CardHawk-Support/sitemap.xml

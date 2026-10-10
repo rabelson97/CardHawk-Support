@@ -99,6 +99,13 @@ button:disabled { cursor: default; opacity: .6; }
 .gallery-surface { height: 440px; display: flex; align-items: center; justify-content: center; padding: 24px; background: var(--md-sys-color-surface-container-low); border-radius: var(--md-sys-shape-corner-medium); }
 .gallery img { max-height: 100%; width: auto; border-radius: 12px; object-fit: contain; }
 figcaption { margin: 16px 4px 0; font-size: 14px; line-height: 20px; font-weight: 500; }
+.faq-section { padding: 56px 0 64px; border-top: 1px solid var(--md-sys-color-outline-variant); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.faq-item { background: var(--md-sys-color-surface-container-low); border-radius: var(--md-sys-shape-corner-medium); padding: 20px 24px; transition: background-color 150ms ease; }
+.faq-item[open] { background: var(--md-sys-color-surface-container); }
+.faq-item summary { font-size: 18px; line-height: 26px; font-weight: 500; cursor: pointer; color: var(--md-sys-color-on-surface); outline: none; }
+.faq-item summary:focus-visible { outline: 2px solid var(--md-sys-color-primary); border-radius: 4px; }
+.faq-item p { margin-top: 12px; color: var(--md-sys-color-on-surface-variant); font-size: 15px; line-height: 24px; }
 .support-callout { padding: 32px; border-radius: var(--md-sys-shape-corner-large); background: var(--md-sys-color-surface-container); display: flex; align-items: center; justify-content: space-between; gap: 32px; margin: 0 0 64px; }
 .support-callout h2 { font-size: 28px; line-height: 36px; }
 .support-callout p { margin-top: 12px; max-width: 640px; color: var(--md-sys-color-on-surface-variant); }
