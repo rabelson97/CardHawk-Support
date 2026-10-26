@@ -2,13 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rabelson97.github.io/CardHawk-Support/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://rabelson97.github.io/CardHawk-Support/support.html</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rabelson97.github.io/CardHawk-Support/best-pokemon-card-scanner-app-android.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rabelson97.github.io/CardHawk-Support/how-to-check-pokemon-card-prices.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rabelson97.github.io/CardHawk-Support/how-to-tell-if-a-pokemon-card-is-worth-money.html</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rabelson97.github.io/CardHawk-Support/ebay-sold-listings-vs-tcgplayer-market-price.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
