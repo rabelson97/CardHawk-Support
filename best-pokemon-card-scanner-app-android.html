@@ -19,22 +19,45 @@
   "author": { "@type": "Organization", "name": "CardHawk" }
 }
 </script>
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 720px; margin: 0 auto; padding: 24px; background: #fafafa; }
-  h1 { font-size: 2em; line-height: 1.25; color: #0f0f23; }
-  h2 { margin-top: 2em; color: #0f0f23; }
-  .cta { background: #16213e; color: #fff; border-radius: 12px; padding: 24px; margin: 2em 0; }
-  .cta a { color: #7dd3fc; font-weight: bold; }
-  .disclosure { font-size: 0.85em; color: #666; border-top: 1px solid #ddd; margin-top: 3em; padding-top: 1em; }
-  a { color: #1d4ed8; }
-</style>
+  <link id="favicon" rel="icon" type="image/svg+xml" href="assets/app_icon_dark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <script src="site.js" defer></script>
+  <style>
+    /* Article-specific styles on top of the shared Material 3 system. */
+    .article { max-width: 760px; margin: 0 auto; }
+    .article-hero { padding: 56px 0 32px; }
+    .article-hero h1 { margin-top: 0; }
+    .article-body p { font-size: 18px; line-height: 30px; margin-top: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body h2 { font-size: 28px; line-height: 36px; margin: 48px 0 4px; }
+    .article-body ol, .article-body ul { padding-left: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body li { margin-top: 12px; }
+    .article-body li::marker { color: var(--md-sys-color-primary); }
+    .disclosure { font-size: 13px; line-height: 20px; color: var(--md-sys-color-on-surface-variant); border-top: 1px solid var(--md-sys-color-outline-variant); margin: 0 0 64px; padding-top: 24px; }
+    @media (max-width: 700px) {
+      .article-hero { padding: 40px 0 24px; }
+      .article-body p { font-size: 16px; line-height: 26px; }
+    }
+  </style>
 </head>
 <body>
-
-<h1>Best Pokémon Card Scanner App for Android in 2026</h1>
-
-<p>You are staring at a card — in your hand, in a binder, or flashing past on a livestream — and you need its price now, not after five minutes of typing set names into a search box. That is the whole job of a Pokémon card scanner app: point, identify, price. But not every scanner does that job the same way.</p>
-
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-bar"><div class="bar-content">
+  <a class="brand" href="index.html"><img id="header-logo" src="assets/app_icon_light.svg" width="32" height="32" alt="" />CardHawk</a>
+  <nav aria-label="Site navigation"><a href="index.html">Overview</a><a href="support.html">Support</a></nav>
+  <button id="theme-toggle" class="icon-button" aria-label="Switch to dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.4A9 9 0 0 1 8.6 3.6a9 9 0 1 0 11.8 11.8Z"/></svg></button>
+</div></header>
+<main id="main" class="page" tabindex="-1">
+  <article class="article">
+    <header class="article-hero">
+      <p class="eyebrow">CardHawk guides</p>
+      <h1>Best Pokémon Card Scanner App for Android in 2026</h1>
+      <p class="intro">You are staring at a card — in your hand, in a binder, or flashing past on a livestream — and you need its price now, not after five minutes of typing set names into a search box. That is the whole job of a Pokémon card scanner app: point, identify, price. But not every scanner does that job the same way.</p>
+    </header>
+    <div class="article-body">
 <h2>What a scanner actually has to get right</h2>
 
 <p>A useful scanner does three things in sequence. First, it identifies the exact printing, not just the Pokémon. “Charizard” is not a price; “Charizard ex 125/165 from 151” is. The set, card number, rarity, and holo pattern can swing a card’s value from a few dollars to hundreds. Second, it matches that printing to a real market price, ideally from recent sales rather than an asking price somebody invented. Third, it does both fast enough that you can act on the answer — before an auction ends or the streamer moves on to the next pack.</p>
@@ -65,26 +88,27 @@
 
 <p>The best scanner for you is the one you will actually use in the moment: fast, honest about its price sources, accurate on printings, and free for the scans you do every day. Test it on cards you already know the value of, and keep the one that gets those right.</p>
 
-<h2>FAQ</h2>
 
-<p><strong>What is the best free Pokémon card scanner app for Android?</strong><br>
-For on-screen scanning during streams, CardHawk is free on Android and needs no account. For cards in hand, any scanner that identifies the exact printing and links to PriceCharting or eBay sold listings will serve you well.</p>
 
-<p><strong>Can a scanner app tell me if my card is fake?</strong><br>
-Not reliably. A scanner matches artwork and printing; it cannot judge card stock, print texture, or centering the way an in-person inspection or professional grading can. Treat scanner results as pricing help, not authentication.</p>
 
-<p><strong>Are scanner app prices accurate?</strong><br>
-They are as accurate as their underlying sales data and their printing match. Always verify high-value cards against recent sold listings for the exact set and number before buying or selling.</p>
 
-<div class="cta">
-  <strong>Price-check cards without pausing the stream.</strong><br><br>
-  CardHawk scans Pokémon cards right off your screen — Whatnot, eBay Live, YouTube, anywhere — and shows the market price in seconds. Free on Android, no account needed.<br><br>
-  <a href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a>
-</div>
 
-<p><a href="https://rabelson97.github.io/CardHawk-Support/index.html">← Back to CardHawk</a></p>
-
-<p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
-
+    </div>
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>What is the best free Pokémon card scanner app for Android?</summary><p>For on-screen scanning during streams, CardHawk is free on Android and needs no account. For cards in hand, any scanner that identifies the exact printing and links to PriceCharting or eBay sold listings will serve you well.</p></details>
+        <details class="faq-item"><summary>Can a scanner app tell me if my card is fake?</summary><p>Not reliably. A scanner matches artwork and printing; it cannot judge card stock, print texture, or centering the way an in-person inspection or professional grading can. Treat scanner results as pricing help, not authentication.</p></details>
+        <details class="faq-item"><summary>Are scanner app prices accurate?</summary><p>They are as accurate as their underlying sales data and their printing match. Always verify high-value cards against recent sold listings for the exact set and number before buying or selling.</p></details>
+      </div>
+    </section>
+    <section class="support-callout"><div><h2>Price-check cards without pausing the stream.</h2><p>CardHawk scans Pokémon cards right off your screen — Whatnot, eBay Live, YouTube, anywhere — and shows the market price in seconds. Free on Android, no account needed.</p></div><a class="filled-button" href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a></section>
+    <p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
+  </article>
+</main>
+<footer class="site-footer"><div class="footer-content"><div><a class="brand" href="index.html">CardHawk</a><p>© 2026 RAbelson Apps. All rights reserved.</p></div><nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="support.html#privacy">Privacy Policy</a><a href="support.html#terms">Terms of Use</a></nav></div></footer>
 </body>
 </html>
