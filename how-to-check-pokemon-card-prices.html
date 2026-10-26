@@ -19,22 +19,45 @@
   "author": { "@type": "Organization", "name": "CardHawk" }
 }
 </script>
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 720px; margin: 0 auto; padding: 24px; background: #fafafa; }
-  h1 { font-size: 2em; line-height: 1.25; color: #0f0f23; }
-  h2 { margin-top: 2em; color: #0f0f23; }
-  .cta { background: #16213e; color: #fff; border-radius: 12px; padding: 24px; margin: 2em 0; }
-  .cta a { color: #7dd3fc; font-weight: bold; }
-  .disclosure { font-size: 0.85em; color: #666; border-top: 1px solid #ddd; margin-top: 3em; padding-top: 1em; }
-  a { color: #1d4ed8; }
-</style>
+  <link id="favicon" rel="icon" type="image/svg+xml" href="assets/app_icon_dark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <script src="site.js" defer></script>
+  <style>
+    /* Article-specific styles on top of the shared Material 3 system. */
+    .article { max-width: 760px; margin: 0 auto; }
+    .article-hero { padding: 56px 0 32px; }
+    .article-hero h1 { margin-top: 0; }
+    .article-body p { font-size: 18px; line-height: 30px; margin-top: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body h2 { font-size: 28px; line-height: 36px; margin: 48px 0 4px; }
+    .article-body ol, .article-body ul { padding-left: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body li { margin-top: 12px; }
+    .article-body li::marker { color: var(--md-sys-color-primary); }
+    .disclosure { font-size: 13px; line-height: 20px; color: var(--md-sys-color-on-surface-variant); border-top: 1px solid var(--md-sys-color-outline-variant); margin: 0 0 64px; padding-top: 24px; }
+    @media (max-width: 700px) {
+      .article-hero { padding: 40px 0 24px; }
+      .article-body p { font-size: 16px; line-height: 26px; }
+    }
+  </style>
 </head>
 <body>
-
-<h1>How to Check Pokémon Card Prices Instantly (Without Leaving the Stream)</h1>
-
-<p>You just watched a streamer pull a card and the chat is going wild. Is it a $2 bulk rare or a $200 chase card? Here's how to find out in seconds — whether you're holding the card or just watching it on screen.</p>
-
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-bar"><div class="bar-content">
+  <a class="brand" href="index.html"><img id="header-logo" src="assets/app_icon_light.svg" width="32" height="32" alt="" />CardHawk</a>
+  <nav aria-label="Site navigation"><a href="index.html">Overview</a><a href="support.html">Support</a></nav>
+  <button id="theme-toggle" class="icon-button" aria-label="Switch to dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.4A9 9 0 0 1 8.6 3.6a9 9 0 1 0 11.8 11.8Z"/></svg></button>
+</div></header>
+<main id="main" class="page" tabindex="-1">
+  <article class="article">
+    <header class="article-hero">
+      <p class="eyebrow">CardHawk guides</p>
+      <h1>How to Check Pokémon Card Prices Instantly (Without Leaving the Stream)</h1>
+      <p class="intro">You just watched a streamer pull a card and the chat is going wild. Is it a $2 bulk rare or a $200 chase card? Here's how to find out in seconds — whether you're holding the card or just watching it on screen.</p>
+    </header>
+    <div class="article-body">
 <h2>Why Pokémon card prices are hard to pin down</h2>
 
 <p>A card's value depends on its exact printing: set, card number, rarity, holo pattern, condition, and whether it's 1st edition. A Charizard from one set can be worth $5; from another, $500. That's why a quick Google of just the card name often gives you the wrong number — you need the <em>specific printing</em>.</p>
@@ -65,26 +88,27 @@
   <li><strong>Watch for reprints.</strong> The same artwork in a newer set is usually worth far less than the original printing.</li>
 </ol>
 
-<h2>FAQ</h2>
 
-<p><strong>What's the fastest free way to check a Pokémon card price?</strong><br>
-Scanning the card with an app like CardHawk, or searching it on PriceCharting. Both take seconds; eBay solds take a minute and give you the most detail.</p>
 
-<p><strong>Can I check prices without knowing the set?</strong><br>
-A scanner identifies the set automatically from the card image. Manually, look for the set symbol (bottom corner) and card number (e.g. 12/128), then search those.</p>
 
-<p><strong>Are online price estimates accurate?</strong><br>
-They're estimates from available sales data — good for quick decisions, but always verify against recent sold listings before buying or selling anything expensive.</p>
 
-<div class="cta">
-  <strong>Price-check cards without pausing the stream.</strong><br><br>
-  CardHawk scans Pokémon cards right off your screen — Whatnot, eBay Live, YouTube, anywhere — and shows the market price in seconds. Free on Android, no account needed.<br><br>
-  <a href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a>
-</div>
 
-<p><a href="https://rabelson97.github.io/CardHawk-Support/index.html">← Back to CardHawk</a></p>
-
-<p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
-
+    </div>
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>What's the fastest free way to check a Pokémon card price?</summary><p>Scanning the card with an app like CardHawk, or searching it on PriceCharting. Both take seconds; eBay solds take a minute and give you the most detail.</p></details>
+        <details class="faq-item"><summary>Can I check prices without knowing the set?</summary><p>A scanner identifies the set automatically from the card image. Manually, look for the set symbol (bottom corner) and card number (e.g. 12/128), then search those.</p></details>
+        <details class="faq-item"><summary>Are online price estimates accurate?</summary><p>They're estimates from available sales data — good for quick decisions, but always verify against recent sold listings before buying or selling anything expensive.</p></details>
+      </div>
+    </section>
+    <section class="support-callout"><div><h2>Price-check cards without pausing the stream.</h2><p>CardHawk scans Pokémon cards right off your screen — Whatnot, eBay Live, YouTube, anywhere — and shows the market price in seconds. Free on Android, no account needed.</p></div><a class="filled-button" href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a></section>
+    <p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
+  </article>
+</main>
+<footer class="site-footer"><div class="footer-content"><div><a class="brand" href="index.html">CardHawk</a><p>© 2026 RAbelson Apps. All rights reserved.</p></div><nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="support.html#privacy">Privacy Policy</a><a href="support.html#terms">Terms of Use</a></nav></div></footer>
 </body>
 </html>
