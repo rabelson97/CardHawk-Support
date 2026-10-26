@@ -19,22 +19,45 @@
   "author": { "@type": "Organization", "name": "CardHawk" }
 }
 </script>
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 720px; margin: 0 auto; padding: 24px; background: #fafafa; }
-  h1 { font-size: 2em; line-height: 1.25; color: #0f0f23; }
-  h2 { margin-top: 2em; color: #0f0f23; }
-  .cta { background: #16213e; color: #fff; border-radius: 12px; padding: 24px; margin: 2em 0; }
-  .cta a { color: #7dd3fc; font-weight: bold; }
-  .disclosure { font-size: 0.85em; color: #666; border-top: 1px solid #ddd; margin-top: 3em; padding-top: 1em; }
-  a { color: #1d4ed8; }
-</style>
+  <link id="favicon" rel="icon" type="image/svg+xml" href="assets/app_icon_dark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <script src="site.js" defer></script>
+  <style>
+    /* Article-specific styles on top of the shared Material 3 system. */
+    .article { max-width: 760px; margin: 0 auto; }
+    .article-hero { padding: 56px 0 32px; }
+    .article-hero h1 { margin-top: 0; }
+    .article-body p { font-size: 18px; line-height: 30px; margin-top: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body h2 { font-size: 28px; line-height: 36px; margin: 48px 0 4px; }
+    .article-body ol, .article-body ul { padding-left: 20px; color: var(--md-sys-color-on-surface-variant); }
+    .article-body li { margin-top: 12px; }
+    .article-body li::marker { color: var(--md-sys-color-primary); }
+    .disclosure { font-size: 13px; line-height: 20px; color: var(--md-sys-color-on-surface-variant); border-top: 1px solid var(--md-sys-color-outline-variant); margin: 0 0 64px; padding-top: 24px; }
+    @media (max-width: 700px) {
+      .article-hero { padding: 40px 0 24px; }
+      .article-body p { font-size: 16px; line-height: 26px; }
+    }
+  </style>
 </head>
 <body>
-
-<h1>eBay Sold Listings vs TCGplayer Market Price: Which Is More Accurate?</h1>
-
-<p>Look up any popular Pokémon card on two different sites and you'll often see two different prices. eBay sold listings show what buyers actually paid; TCGplayer market price shows a computed average from its own marketplace. Both are useful — but they answer different questions, and knowing which one to trust in each situation saves you from overpaying or underpricing your own cards.</p>
-
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-bar"><div class="bar-content">
+  <a class="brand" href="index.html"><img id="header-logo" src="assets/app_icon_light.svg" width="32" height="32" alt="" />CardHawk</a>
+  <nav aria-label="Site navigation"><a href="index.html">Overview</a><a href="support.html">Support</a></nav>
+  <button id="theme-toggle" class="icon-button" aria-label="Switch to dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.4 15.4A9 9 0 0 1 8.6 3.6a9 9 0 1 0 11.8 11.8Z"/></svg></button>
+</div></header>
+<main id="main" class="page" tabindex="-1">
+  <article class="article">
+    <header class="article-hero">
+      <p class="eyebrow">CardHawk guides</p>
+      <h1>eBay Sold Listings vs TCGplayer Market Price: Which Is More Accurate?</h1>
+      <p class="intro">Look up any popular Pokémon card on two different sites and you'll often see two different prices. eBay sold listings show what buyers actually paid; TCGplayer market price shows a computed average from its own marketplace. Both are useful — but they answer different questions, and knowing which one to trust in each situation saves you from overpaying or underpricing your own cards.</p>
+    </header>
+    <div class="article-body">
 <h2>How eBay sold listings work</h2>
 
 <p>On eBay, anyone can ask any price. What matters is the <strong>Sold items</strong> filter, which shows completed sales with their actual final prices. This is the raw, unfiltered market: auctions with sniping wars, Buy It Now deals, overgraded cards that sold anyway, and the occasional mislabeled listing where someone got a steal.</p>
@@ -77,26 +100,27 @@
 
 <p>One habit makes this whole comparison reliable: always match the <strong>exact printing and condition</strong> — a secret rare and its regular rare sibling can differ 50x, and played vs near-mint changes everything. Ignore the extreme outliers too: the highest and lowest solds are usually mistakes, not the market.</p>
 
-<h2>FAQ</h2>
 
-<p><strong>Is TCGplayer market price accurate?</strong><br>
-It's a reasonable average of sales on TCGplayer's own marketplace — accurate for modern near-mint singles, less reliable for graded, vintage, or sealed items where its sales data is thin.</p>
 
-<p><strong>Why is the eBay sold price different from TCGplayer?</strong><br>
-They measure different marketplaces. eBay solds include auctions, impulse buys, and graded slabs; TCGplayer reflects shop sales of mostly raw singles. Different buyer pools, different prices.</p>
 
-<p><strong>Can I just average the two?</strong><br>
-Only if both sources have enough recent sales. If one source has twenty solds this week and the other has two from last month, trust the deeper data — don't average fresh and stale.</p>
 
-<div class="cta">
-  <strong>Scan a card, see the market in seconds.</strong><br><br>
-  CardHawk identifies Pokémon cards right off your screen and shows market pricing powered by eBay sold data — so you skip the listing-digging and go straight to the number. Free on Android, no account needed.<br><br>
-  <a href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a>
-</div>
 
-<p><a href="https://rabelson97.github.io/CardHawk-Support/index.html">← Back to CardHawk</a></p>
-
-<p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
-
+    </div>
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Is TCGplayer market price accurate?</summary><p>It's a reasonable average of sales on TCGplayer's own marketplace — accurate for modern near-mint singles, less reliable for graded, vintage, or sealed items where its sales data is thin.</p></details>
+        <details class="faq-item"><summary>Why is the eBay sold price different from TCGplayer?</summary><p>They measure different marketplaces. eBay solds include auctions, impulse buys, and graded slabs; TCGplayer reflects shop sales of mostly raw singles. Different buyer pools, different prices.</p></details>
+        <details class="faq-item"><summary>Can I just average the two?</summary><p>Only if both sources have enough recent sales. If one source has twenty solds this week and the other has two from last month, trust the deeper data — don't average fresh and stale.</p></details>
+      </div>
+    </section>
+    <section class="support-callout"><div><h2>Scan a card, see the market in seconds.</h2><p>CardHawk identifies Pokémon cards right off your screen and shows market pricing powered by eBay sold data — so you skip the listing-digging and go straight to the number. Free on Android, no account needed.</p></div><a class="filled-button" href="https://play.google.com/store/apps/details?id=com.ra.cardhawk">Get CardHawk on Google Play</a></section>
+    <p class="disclosure">Disclosure: some links on this page are affiliate links. CardHawk may earn a commission on qualifying purchases made through eBay or TCGplayer links, at no extra cost to you. CardHawk is an independent collector tool and is not affiliated with, endorsed by, or sponsored by The Pokémon Company, Nintendo, Creatures, GAME FREAK, PriceCharting, eBay, or TCGplayer.</p>
+  </article>
+</main>
+<footer class="site-footer"><div class="footer-content"><div><a class="brand" href="index.html">CardHawk</a><p>© 2026 RAbelson Apps. All rights reserved.</p></div><nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="support.html#privacy">Privacy Policy</a><a href="support.html#terms">Terms of Use</a></nav></div></footer>
 </body>
 </html>
